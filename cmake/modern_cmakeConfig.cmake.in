@@ -1,0 +1,4 @@
+@PACKAGE_INIT@
+list(APPEND CMAKE_MODULE_PATH "@PACKAGE_cmakeModulesDir@")
+
+include(modern_cmake)

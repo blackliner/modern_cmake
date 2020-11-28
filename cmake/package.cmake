@@ -1,0 +1,37 @@
+include(CMakePackageConfigHelpers)
+
+set(cmakeModulesDir cmake)
+
+configure_package_config_file(
+  ${CMAKE_CURRENT_LIST_DIR}/modern_cmakeConfig.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/modern_cmakeConfig.cmake
+  INSTALL_DESTINATION cmake
+  PATH_VARS cmakeModulesDir
+  NO_SET_AND_CHECK_MACRO NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+
+write_basic_package_version_file(
+  modern_cmakeConfigVersion.cmake
+  VERSION ${CMAKE_PROJECT_VERSION}
+  COMPATIBILITY AnyNewerVersion)
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/modern_cmakeConfig.cmake
+              ${CMAKE_CURRENT_BINARY_DIR}/modern_cmakeConfigVersion.cmake
+        DESTINATION cmake)
+
+set(CPACK_PACKAGE_NAME "modern_cmake")
+set(CPACK_PACKAGE_CONTACT "florian.berchtold@gmail.com")
+set(CPACK_PACKAGE_VENDOR "Florian Berchtold")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A modern CMake template")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(CPACK_VERBATIM_VARIABLES YES)
+set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE)
+set(CPACK_RESOURCE_FILE_README ${CMAKE_CURRENT_SOURCE_DIR}/README.md)
+
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+
+# set(CPACK_PACKAGE_FILE_NAME ${CPACK_PACKAGE_NAME}-${CPACK_SYSTEM_NAME})
+
+include(CPack)
