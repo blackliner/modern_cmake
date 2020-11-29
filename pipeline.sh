@@ -9,15 +9,21 @@ ROOT_DIR=$SCRIPT_DIR
 BUILD_DIR=$ROOT_DIR/build
 INSTALL_DIR=$ROOT_DIR/build/install
 
+TOOLCHAIN=$ROOT_DIR/cmake/toolchain_linux_x86_64_gcc8.cmake
+
+BUILD_TYPE=Release
+
 mkdir -p $BUILD_DIR
 
 rm -rf $BUILD_DIR/*
 
 cd $BUILD_DIR
 
-conan install .. -s build_type=Release --build=missing -s compiler=gcc -s compiler.libcxx=libstdc++11 -s compiler.version=8
+export CONAN_CMAKE_TOOLCHAIN_FILE=$TOOLCHAIN
 
-cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_MODULE_PATH=$BUILD_DIR -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
+conan install .. -s build_type=$BUILD_TYPE --build=missing
+
+cmake .. -GNinja -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_MODULE_PATH=$BUILD_DIR -DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN
 
 cmake --build .
 
@@ -48,7 +54,7 @@ cd $CUSTOMER_BUILD_DIR
 # dpkg-deb -x $DEPENDENCY_INSTALL_DEB_FILE $CUSTOMER_DEPENDENCY_INSTALL_DIR
 mkdir -p $CUSTOMER_DEPENDENCY_INSTALL_DIR && tar -xvzf $DEPENDENCY_INSTALL_TGZ_FILE -C $CUSTOMER_DEPENDENCY_INSTALL_DIR
 
-cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$CUSTOMER_DEPENDENCY_INSTALL_DIR
+cmake .. -GNinja -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_PREFIX_PATH=$CUSTOMER_DEPENDENCY_INSTALL_DIR
 
 cmake --build .
 
