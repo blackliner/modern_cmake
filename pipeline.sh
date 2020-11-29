@@ -15,9 +15,9 @@ rm -rf $BUILD_DIR/*
 
 cd $BUILD_DIR
 
-conan install ..
+conan install .. -s build_type=Release --build=missing -s compiler=gcc -s compiler.libcxx=libstdc++11 -s compiler.version=8
 
-cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_MODULE_PATH=$BUILD_DIR
+cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_MODULE_PATH=$BUILD_DIR -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
 
 cmake --build .
 
