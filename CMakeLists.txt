@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 
+include(cmake/launcher.cmake)
+
 project(
   modern_cmake
   VERSION 1.0.0
