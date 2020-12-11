@@ -17,3 +17,4 @@ cd build
 conan install ..
 cmake .. -DCMAKE_MODULE_PATH=${PWD} -G Ninja -DCMAKE_BUILD_TYPE=Release
 ninja
+```
