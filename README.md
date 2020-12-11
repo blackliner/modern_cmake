@@ -10,9 +10,10 @@ Follow [kitware cmake install tutorial](https://apt.kitware.com/) to install a m
      sudo apt-get --only-upgrade install cmake
 
 # Build
-
-     mkdir build
-     cd build
-     conan install ..
-     cmake .. -DCMAKE_MODULE_PATH=${PWD} -G Ninja -DCMAKE_BUILD_TYPE=Release
-     ninja
+call `pipeline.sh` or:
+```bash
+mkdir build
+cd build
+conan install ..
+cmake .. -DCMAKE_MODULE_PATH=${PWD} -G Ninja -DCMAKE_BUILD_TYPE=Release
+ninja
