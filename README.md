@@ -20,7 +20,9 @@ ninja
 ```
 
 # After conan
-Downgrading cmake can be necessary if you have issues
+Downgrading cmake can be necessary if you have issues.
+
 The current default version for ubuntu 18.04.1 LTS is 3.10.2.
+
 So using this command you can downgrade:
 ```sudo apt --allow-downgrades install cmake=3.10.2 cmake-data=3.10.2```
