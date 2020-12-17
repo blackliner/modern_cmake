@@ -10,4 +10,4 @@ DOCKER_TAG=modern_cmake:$SHORT_GIT_HASH
 
 docker build $SCRIPT_DIR/docker --tag $DOCKER_TAG --network host
 
-docker run --network host $DOCKER_TAG bash -c "git clone https://github.com/blackliner/modern_cmake /tmp/modern_cmake && cd /tmp/modern_cmake && ./pipeline.sh"
+docker run --volume /tmp/conan_download_cache:/tmp/conan_download_cache:rw --network host $DOCKER_TAG bash -c "git clone https://github.com/blackliner/modern_cmake /tmp/modern_cmake && cd /tmp/modern_cmake && ./pipeline.sh"

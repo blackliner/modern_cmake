@@ -19,6 +19,9 @@ cd $BUILD_DIR
 
 # export CONAN_CMAKE_TOOLCHAIN_FILE=$TOOLCHAIN
 
+conan config set storage.download_cache="/tmp/conan_download_cache"
+conan config set general.parallel_download=8
+
 conan install .. -s build_type=$BUILD_TYPE --build=missing -pr=$CONAN_PROFILE
 
 cmake .. -GNinja \
