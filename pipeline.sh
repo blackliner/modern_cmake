@@ -33,7 +33,7 @@ cmake .. -GNinja \
 
 cmake --build .
 
-ctest
+ctest -VV
 
 cmake --build . --target install
 
