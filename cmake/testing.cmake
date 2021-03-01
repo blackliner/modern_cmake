@@ -1,4 +1,4 @@
-enable_testing()
+include(CTest)
 
 macro(mc_add_test target)
 

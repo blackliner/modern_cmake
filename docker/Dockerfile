@@ -2,9 +2,12 @@ from ubuntu:21.04 as start
 
 run apt-get update && \
     DEBIAN_FRONTEND="noninteractive" \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
     tzdata \
     clang-10 \
+    build-essential \
+    gcc-8 \
+    g++-8 \
     cmake \
     git \
     python3-pip \

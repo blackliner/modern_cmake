@@ -6,8 +6,8 @@
 int main()
 {
     // Make a window that is 800 by 200 pixels
-    // And has the title "Hello from SFML"
-    sf::RenderWindow window(sf::VideoMode(800, 640), "Hello from SFML");
+    // And has the title "Iron dome"
+    sf::RenderWindow window(sf::VideoMode(800, 640), "Iron dome");
 
     // Create a "Text" object called "message". Weird but we will learn about objects soon
     sf::Text message;
@@ -30,7 +30,7 @@ int main()
     aero::KinematicObject some_mass;
     some_mass.setMass(1.0);
     some_mass.SetInertia(1.0);
-    some_mass.setAcceleration({-9.81, 1.0});
+    some_mass.setAcceleration({-9.81, 5.0});
     some_mass.setVelocity({100, 50});
 
     // This "while" loop goes round and round- perhaps forever
